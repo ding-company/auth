@@ -34,9 +34,6 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
 
     testImplementation("io.mockk:mockk:${Dependency.mockkVersion}")
-
-    implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
-    kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
 }
 
 tasks {
