@@ -15,7 +15,5 @@ class Application{
 }
 
 fun main(args: Array<String>) {
-    println("HelloWord")
     runApplication<Application>(*args)
-    println("HelloWord")
 }
