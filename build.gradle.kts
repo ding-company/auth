@@ -32,8 +32,8 @@ dependencies {
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
-
     testImplementation("io.mockk:mockk:${Dependency.mockkVersion}")
+    testImplementation ("junit:junit:4.13.2")
 }
 
 tasks {
