@@ -7,6 +7,10 @@ plugins {
     kotlin("jvm") version Dependency.kotlinVersion
     kotlin("plugin.spring") version Dependency.kotlinVersion
     kotlin("kapt") version Dependency.kotlinVersion
+    kotlin("plugin.jpa") version Dependency.kotlinVersion
+    id("org.jetbrains.kotlin.plugin.allopen") version Dependency.kotlinVersion
+    id("org.jetbrains.kotlin.plugin.noarg") version Dependency.kotlinVersion
+
 }
 
 java.sourceCompatibility = JavaVersion.toVersion(Dependency.targetJvmVersion)
@@ -34,6 +38,13 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.mockk:mockk:${Dependency.mockkVersion}")
     testImplementation ("junit:junit:4.13.2")
+
+    // JPA
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    implementation("org.hibernate:hibernate-core:5.5.6.Final")
+    implementation("mysql:mysql-connector-java:${Dependency.mySQLConnectorVersion}")
 }
 
 tasks {
@@ -46,4 +57,15 @@ tasks {
     withType<Test> {
         useJUnitPlatform()
     }
+}
+
+
+noArg {
+    annotation("javax.persistence.Entity")
+}
+
+allOpen {
+    annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
+    annotation("javax.persistence.Embeddable")
 }

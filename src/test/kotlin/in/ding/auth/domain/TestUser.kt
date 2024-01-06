@@ -6,6 +6,7 @@ import io.mockk.mockkStatic
 import io.mockk.verify
 import org.junit.Assert.assertEquals
 import org.junit.jupiter.api.Test
+import java.time.LocalDateTime
 import java.util.*
 
 class TestUser {
@@ -13,8 +14,11 @@ class TestUser {
     fun testRegister() {
         // Given
         mockkStatic(UUID::class)
+        mockkStatic(LocalDateTime::class)
         val mockedUUID = UUID.randomUUID()
+        val dateNow = LocalDateTime.now()
         every { UUID.randomUUID() } returns mockedUUID
+        every { LocalDateTime.now() } returns dateNow
 
         var testMobilePhoneNumber = "testMpn"
         var testName = "testName"
@@ -27,9 +31,13 @@ class TestUser {
 
         // Then
         verify { UUID.randomUUID() }
+        verify { LocalDateTime.now() }
         assertEquals(testName, user.name)
         assertEquals(testMobilePhoneNumber, user.mobilePhoneNumber)
         assertEquals(testPassword, user.password)
         assertEquals(mockedUUID, user.id)
+        assertEquals(dateNow, user.createdAt)
+        assertEquals(dateNow, user.updatedAt)
+        assertEquals(dateNow, user.registeredAt)
     }
 }
