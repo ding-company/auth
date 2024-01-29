@@ -1,4 +1,4 @@
-package `in`.ding.auth.`in`.web
+package `in`.ding.auth.adapter.`in`.web
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import `in`.ding.auth.adapter.`in`.web.PostUserRequest

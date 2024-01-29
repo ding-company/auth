@@ -4,4 +4,5 @@ object Dependency {
     const val springCloudVersion = "2022.0.1"
     const val targetJvmVersion = "17"
     const val mockkVersion = "1.13.5"
+    const val mySQLConnectorVersion = "8.0.32"
 }

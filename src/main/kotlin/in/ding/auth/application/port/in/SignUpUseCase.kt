@@ -4,5 +4,5 @@ import  org.springframework.stereotype.Service
 
 @Service
 interface SignUpUseCase {
-    fun signUp(command:SignUpCommand): Boolean
+    fun signUp(command:SignUpCommand)
 }
