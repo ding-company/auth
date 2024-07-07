@@ -1,8 +1,7 @@
-package `in`.payhere.common.model
+package `in`.ding.common.model
 
 import com.fasterxml.jackson.annotation.JsonValue
 import org.springframework.http.HttpStatus
-
 
 enum class MetaCode(private var code: String) {
     SUCCESS("20000000"),

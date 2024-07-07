@@ -10,6 +10,7 @@ plugins {
     kotlin("plugin.jpa") version Dependency.kotlinVersion
     id("org.jetbrains.kotlin.plugin.allopen") version Dependency.kotlinVersion
     id("org.jetbrains.kotlin.plugin.noarg") version Dependency.kotlinVersion
+    id("io.gitlab.arturbosch.detekt") version "1.22.0"
 
 }
 
@@ -32,11 +33,13 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.springframework.boot:spring-boot-starter-security")
+//    implementation("org.springframework.boot:spring-boot-starter-security")
+
+    // detekt
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.22.0")
 
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.mockk:mockk:${Dependency.mockkVersion}")
     testImplementation ("junit:junit:4.13.2")
 
@@ -46,6 +49,20 @@ dependencies {
 
     implementation("org.hibernate:hibernate-core:5.5.6.Final")
     implementation("mysql:mysql-connector-java:${Dependency.mySQLConnectorVersion}")
+
+
+
+    // Querydsl
+    implementation("com.querydsl:querydsl-jpa:5.0.0:jakarta")
+    kapt("com.querydsl:querydsl-apt:5.0.0:jakarta")
+    annotationProcessor("jakarta.persistence:jakarta.persistence-api")
+    annotationProcessor("jakarta.annotation:jakarta.annotation-api")
+
+    runtimeOnly("com.h2database:h2")
+
+}
+detekt {
+    autoCorrect = true
 }
 
 tasks {

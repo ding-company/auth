@@ -1,15 +1,19 @@
 package `in`.ding.auth.application.service
 
-import UserRepository
 import `in`.ding.auth.adapter.out.persistence.UserJPAEntity
+import `in`.ding.auth.adapter.out.persistence.UserRepository
 import `in`.ding.auth.application.port.`in`.SignUpCommand
 import `in`.ding.auth.domain.User
-import io.mockk.*
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
+import io.mockk.verify
 import org.junit.jupiter.api.Test
 
 class TestSignUpService {
     @Test
-    fun testSignUp(){
+    fun testSignUp() {
         // Given
         val userRepository = mockk<UserRepository>()
         val expectedUserJPAEntity = mockk<UserJPAEntity>()
@@ -28,13 +32,19 @@ class TestSignUpService {
             nickName = "johndoe",
             password = "password123"
         )
-
         // When
         signUpService.signUp(signUpCommand)
 
         // Then
         verify(exactly = 1) { userRepository.save(expectedUserJPAEntity) }
-        verify(exactly = 1) { User.register(signUpCommand.mobilePhoneNumber,signUpCommand.name,signUpCommand.nickName,signUpCommand.password) }
+        verify(exactly = 1) {
+            User.register(
+                signUpCommand.mobilePhoneNumber,
+                signUpCommand.name,
+                signUpCommand.nickName,
+                signUpCommand.password
+            )
+        }
         verify(exactly = 1) { UserJPAEntity.convertDomainEntityToJPAEntity(userEntity) }
         unmockkObject(User.Companion)
         unmockkObject(UserJPAEntity.Companion)

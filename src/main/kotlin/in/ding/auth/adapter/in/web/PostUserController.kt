@@ -2,27 +2,31 @@ package `in`.ding.auth.adapter.`in`.web
 
 import `in`.ding.auth.application.port.`in`.SignUpCommand
 import `in`.ding.auth.application.port.`in`.SignUpUseCase
-import `in`.payhere.common.dto.response.ResponseDTO
-import `in`.payhere.common.model.MetaCode
+import `in`.ding.common.dto.response.ResponseDTO
+import `in`.ding.common.model.MetaCode
 import org.springframework.http.HttpStatus
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
-import java.util.*
 
 @RestController
 @Validated
-@ResponseStatus(HttpStatus.CREATED)
 class PostUserController(
     private val signUpUseCase: SignUpUseCase,
 ) {
-    @PostMapping("/api/v1/auth/users")
-    fun signUp(@RequestBody req_body:PostUserRequest):ResponseDTO<String>{
-        val command = SignUpCommand(mobilePhoneNumber=req_body.mobilePhoneNumber, name = req_body.name, nickName= req_body.nickName, password=req_body.password)
+    @PostMapping("/api/v1/users")
+    @ResponseStatus(HttpStatus.CREATED)
+    fun signUp(@RequestBody reqBody: PostUserRequest): ResponseDTO<String> {
+        val command = SignUpCommand(
+            mobilePhoneNumber = reqBody.mobilePhoneNumber,
+            name = reqBody.name,
+            nickName = reqBody.nickName,
+            password = reqBody.password
+        )
 
-        signUpUseCase.signUp(command=command)
+        signUpUseCase.signUp(command = command)
         return ResponseDTO(meta = ResponseDTO.Meta(code = MetaCode.CREATED))
     }
 }

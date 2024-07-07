@@ -1,6 +1,6 @@
-package `in`.payhere.common.dto.response
+package `in`.ding.common.dto.response
 
-import `in`.payhere.common.model.MetaCode
+import `in`.ding.common.model.MetaCode
 
 open class ResponseDTO<T>(
     open val meta: Meta,

@@ -1,7 +1,6 @@
 package `in`.ding.auth.adapter.`in`.web
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import `in`.ding.auth.adapter.`in`.web.PostUserRequest
 import `in`.ding.auth.application.port.`in`.SignUpUseCase
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,12 +21,12 @@ class TestPostUserController {
 
     @Autowired
     private lateinit var objectMapper: ObjectMapper
+
     @MockBean private lateinit var signUserCase: SignUpUseCase
 
     @Test
     fun testSignIn() {
-
-        val uri: String = "/api/v1/auth/users"
+        val uri: String = "/api/v1/users"
         val requestBody = objectMapper.writeValueAsString(
             PostUserRequest(
                 mobilePhoneNumber = "01012341234",
@@ -43,7 +42,7 @@ class TestPostUserController {
                     requestBody
                 )
         )
-            .andExpect(MockMvcResultMatchers.status().isCreated)
             .andDo(MockMvcResultHandlers.print())
+            .andExpect(MockMvcResultMatchers.status().isCreated)
     }
 }
