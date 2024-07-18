@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 @WebMvcTest
 @AutoConfigureMockMvc
-class TestPostUserController {
+class TestUserController {
     @Autowired
     private lateinit var mockMvc: MockMvc
 

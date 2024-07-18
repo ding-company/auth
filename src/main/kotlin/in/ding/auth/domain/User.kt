@@ -3,8 +3,8 @@ package `in`.ding.auth.domain
 import java.time.LocalDateTime
 import java.util.UUID
 
-data class User private constructor(
-    var id: UUID,
+class User(
+    val uid: String,
     val mobilePhoneNumber: String,
     val name: String,
     val nickName: String?,
@@ -17,7 +17,7 @@ data class User private constructor(
         fun register(mobilePhoneNumber: String, name: String, nickName: String? = null, password: String): User {
             val datetimeNow = LocalDateTime.now()
             return User(
-                id = UUID.randomUUID(),
+                uid = UUID.randomUUID().toString(),
                 mobilePhoneNumber = mobilePhoneNumber,
                 name = name,
                 nickName = nickName,

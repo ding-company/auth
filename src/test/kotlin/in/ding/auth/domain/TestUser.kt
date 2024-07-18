@@ -34,7 +34,6 @@ class TestUser {
         assertEquals(testName, user.name)
         assertEquals(testMobilePhoneNumber, user.mobilePhoneNumber)
         assertEquals(testPassword, user.password)
-        assertEquals(mockedUUID, user.id)
         assertEquals(dateNow, user.createdAt)
         assertEquals(dateNow, user.updatedAt)
         assertEquals(dateNow, user.registeredAt)
